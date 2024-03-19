@@ -11,6 +11,8 @@ import TextInput from '@/Components/TextInput.vue';
 import Arrow from "@/Svgs/Arrow.vue";
 import TitleH1 from '@/Components/TitleH1.vue';
 import Span from '@/Components/Span.vue';
+import MazPhoneNumberInput from "maz-ui/components/MazPhoneNumberInput";
+
 const form = useForm({
     name: '',
     email: '',
@@ -18,6 +20,10 @@ const form = useForm({
     password_confirmation: '',
     terms: false,
 });
+
+const phoneNumber = ref()
+const countryCode = ref('BR')
+const results = ref()
 
 const submit = () => {
     form.post(route('register'), {
@@ -75,6 +81,12 @@ const step = ref(1);
 
         <form @submit.prevent="submit">
             <div v-if="step === 1">
+                <MazPhoneNumberInput v-model="phoneNumber" color="info" v-model:country-code="countryCode"
+                    show-code-on-list :preferred-countries="['FR', 'BE', 'DE', 'US', 'GB']" :ignored-countries="['AC']"
+                    @update="results = $event" />
+                <code>
+            {{ results }}
+        </code>
                 <div>
                     <InputLabel for="name" value="Name" :required="true" />
                     <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" required autofocus
