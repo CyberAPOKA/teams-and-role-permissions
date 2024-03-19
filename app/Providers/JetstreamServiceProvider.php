@@ -57,5 +57,38 @@ class JetstreamServiceProvider extends ServiceProvider
             'create',
             'update',
         ])->description('Editor users have the ability to read, create, and update.');
+
+        Jetstream::role('assistant', 'Assistente', [
+            'view calendar',
+            'view financial',
+            'view patients',
+        ])->description('Assistente só pode ver.');
+
+        Jetstream::role('professional administrator', 'Profissional Administrador', [
+            'view calendar',
+            'update calendar',
+            'create calendar',
+            'delete calendar',
+            'view financial',
+            'update financial',
+            'create financial',
+            'delete financial',
+            'view patients',
+            'update patients',
+            'create patients',
+            'delete patients',
+        ])->description('Permissão total');
+
+        Jetstream::role('simple professional', 'Profissional Simples', [
+            'view calendar',
+            'update calendar',
+            'create calendar',
+            'view financial',
+            'update financial',
+            'create financial',
+            'view patients',
+            'update patients',
+            'create patients',
+        ])->description('Permissão de ler, criar e atualizar.');
     }
 }

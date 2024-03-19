@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\DebugController;
+use App\Http\Controllers\TestController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+require __DIR__ . '/debug.php';
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
